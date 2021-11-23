@@ -1,3 +1,6 @@
 bin/
 target/
 .vscode/
+.settings/
+.classpath
+.project
