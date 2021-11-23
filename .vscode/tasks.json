@@ -3,7 +3,7 @@
 	"tasks": [
 		{
 			"type": "java",
-			"mainClass": "eu.loumadev.enhancer.App",
+			"mainClass": "eu.loumadev.enhancer.Main",
 			"targetPath": "${workspaceFolder}/../../Server 1.17.1/plugins/${workspaceFolderBasename}.jar",
 			"elements": [
 				"${compileOutput}",

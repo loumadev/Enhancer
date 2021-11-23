@@ -1,0 +1,7 @@
+api: "1.17"
+api-version: "1.17"
+main: eu.loumadev.enhancer.Main
+name: Enhancer
+version: "1.0"
+author: loumadev
+description: An Example plugin
