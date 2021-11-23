@@ -22,10 +22,15 @@ public class Structure {
         return null;
     }
 
+    /**
+     * @static
+     * @param file
+     * @param structure
+     */
     public static void save(Structure structure, File file) throws Exception {
-
         Block b1 = structure.getPosA();
         Block b2 = structure.getPosB();
+
         if(b1.getWorld() != b2.getWorld()) throw new Exception("Positions are not in the same world!");
 
         HashMap<String, Object> struct = new HashMap<String, Object>();
@@ -46,10 +51,12 @@ public class Structure {
             for(int y = 0; y < endY - startY; y++) {
                 for(int x = 0; x < endX - startX; x++) {
 
-                    Block b = b1.getWorld().getBlockAt(x, y, z); // couldn't think of a better way, its fine for now i suppose
-
                     // we can store more block data, but I guess it's fine for now
                     HashMap<String, Object> block = new HashMap<String, Object>();
+
+                    // couldn't think of a better way, its fine for now i suppose
+                    Block b = b1.getWorld().getBlockAt(x, y, z);
+
                     block.put("x", x);
                     block.put("y", y);
                     block.put("z", z);
