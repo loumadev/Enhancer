@@ -33,8 +33,8 @@ public class Structure {
 
         if(b1.getWorld() != b2.getWorld()) throw new Exception("Positions are not in the same world!");
 
-        HashMap<String, Object> struct = new HashMap<String, Object>();
-        ArrayList<JSONObject> blocks = new ArrayList<JSONObject>();
+        HashMap<String, Object> struct = new HashMap<>();
+        ArrayList<JSONObject> blocks = new ArrayList<>();
 
         int startX, startY, startZ;
         int endX, endY, endZ;
