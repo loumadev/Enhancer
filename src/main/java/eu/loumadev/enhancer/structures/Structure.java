@@ -1,11 +1,12 @@
 package eu.loumadev.enhancer.structures;
 
 import org.bukkit.block.Block;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Structure {
 
@@ -25,10 +26,11 @@ public class Structure {
 
         Block b1 = structure.getPosA();
         Block b2 = structure.getPosB();
-        if (b1.getWorld() != b2.getWorld()) throw new Exception("Positions are not in the same world!");
+        if(b1.getWorld() != b2.getWorld()) throw new Exception("Positions are not in the same world!");
 
-        JSONObject struct = new JSONObject();
-        JSONArray blocks = new JSONArray();
+        HashMap<String, Object> struct = new HashMap<String, Object>();
+        ArrayList<JSONObject> blocks = new ArrayList<JSONObject>();
+
         int startX, startY, startZ;
         int endX, endY, endZ;
 
@@ -40,21 +42,21 @@ public class Structure {
         endY = Math.max(b1.getY(), b2.getY());
         endZ = Math.max(b1.getZ(), b2.getZ());
 
-        for (int z = 0; z < endZ - startZ; z++) {
-            for (int y = 0; y < endY - startY; y++) {
-                for (int x = 0; x < endX - startX; x++) {
+        for(int z = 0; z < endZ - startZ; z++) {
+            for(int y = 0; y < endY - startY; y++) {
+                for(int x = 0; x < endX - startX; x++) {
 
-                    Block b = b1.getWorld().getBlockAt(x, y, z);    // couldn't think of a better way, its fine for now i suppose
+                    Block b = b1.getWorld().getBlockAt(x, y, z); // couldn't think of a better way, its fine for now i suppose
 
                     // we can store more block data, but I guess it's fine for now
-                    JSONObject block = new JSONObject();
+                    HashMap<String, Object> block = new HashMap<String, Object>();
                     block.put("x", x);
                     block.put("y", y);
                     block.put("z", z);
                     block.put("blockdata", b.getBlockData().getAsString());
 
                     // now just add them into the array
-                    blocks.add(block);
+                    blocks.add(new JSONObject(block));
                 }
             }
         }
@@ -68,7 +70,7 @@ public class Structure {
 
         // write into file
         FileWriter writer = new FileWriter(file);
-        writer.write(struct.toJSONString());
+        writer.write(new JSONObject(struct).toJSONString());
         writer.close();
     }
 
