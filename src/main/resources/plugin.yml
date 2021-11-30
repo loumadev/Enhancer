@@ -5,3 +5,8 @@ name: Enhancer
 version: "1.0"
 author: loumadev
 description: An Example plugin
+commands:
+  struct:
+    usage: /struct <save|build> <name>
+    aliases: [str]
+    description: Structure

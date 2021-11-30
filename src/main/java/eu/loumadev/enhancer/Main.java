@@ -1,7 +1,7 @@
 package eu.loumadev.enhancer;
 
-import eu.loumadev.enhancer.structures.Structure;
-import org.bukkit.event.world.ChunkPopulateEvent;
+import eu.loumadev.enhancer.commands.StructureCommand;
+import eu.loumadev.enhancer.events.SelectionEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -14,6 +14,8 @@ public class Main extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		this.getLogger().info("The plugin is enabling!");
+		this.getServer().getPluginCommand("struct").setExecutor(new StructureCommand(this));
+		this.getServer().getPluginManager().registerEvents(new SelectionEvent(this), this);
 	}
 
 	@Override
