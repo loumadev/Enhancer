@@ -40,7 +40,7 @@ public class SelectionEvent implements Listener {
 
     @EventHandler
     public void blockBreak(BlockBreakEvent e){
-        if(e.getPlayer().getInventory().getItemInMainHand().getType() == Material.GHAST_TEAR)
+        if(e.getPlayer().getInventory().getItemInMainHand().getType() == Material.GHAST_TEAR && e.getPlayer().isOp())
             e.setCancelled(true);
     }
 }

@@ -20,6 +20,13 @@ public class Structure {
     private int height;
     private int depth;
 
+    /***
+     *
+     * @param loc Player location
+     * @param file File to load the structure from
+     * @throws IOException
+     * @throws ParseException
+     */
     public static void build(Location loc, File file) throws IOException, ParseException {
         JSONParser parser = new JSONParser();
         JSONObject structure = (JSONObject) parser.parse(new FileReader(file));
@@ -38,7 +45,6 @@ public class Structure {
             int blkY = y + Integer.parseInt(blk.get("y").toString());
             int blkZ = z + Integer.parseInt(blk.get("z").toString());
 
-            // TODO: set block data
             world.getBlockAt(blkX, blkY, blkZ).setBlockData(Bukkit.createBlockData(blk.get("blockdata").toString()));
         }
     }
@@ -51,7 +57,7 @@ public class Structure {
      */
     public static void save(Block b1, Block b2, File file) throws WorldMismatchException, IOException {
 
-        if(b1.getWorld() != b2.getWorld()) throw new WorldMismatchException("Positions are not in the same world!");
+        if(b1.getWorld() != b2.getWorld()) throw new WorldMismatchException();
 
         HashMap<String, Object> struct = new HashMap<>();
         ArrayList<JSONObject> blocks = new ArrayList<>();
