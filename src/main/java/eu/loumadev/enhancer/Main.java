@@ -3,9 +3,9 @@ package eu.loumadev.enhancer;
 import eu.loumadev.enhancer.enchantments.EnchantmentRegistrar;
 import eu.loumadev.enhancer.structures.Structure;
 import org.bukkit.event.world.ChunkPopulateEvent;
+import eu.loumadev.enhancer.commands.StructureCommand;
+import eu.loumadev.enhancer.events.SelectionEvent;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.io.File;
 
 /**
  * Hello world!
@@ -18,6 +18,9 @@ public class Main extends JavaPlugin {
 
 		//Setup custom enchantment class
 		EnchantmentRegistrar.init(this);
+
+		this.getServer().getPluginCommand("struct").setExecutor(new StructureCommand(this));
+		this.getServer().getPluginManager().registerEvents(new SelectionEvent(this), this);
 	}
 
 	@Override

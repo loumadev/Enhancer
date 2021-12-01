@@ -2,5 +2,6 @@ bin/
 target/
 .vscode/
 .settings/
+.idea/
 .classpath
 .project
