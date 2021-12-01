@@ -4,8 +4,6 @@ import eu.loumadev.enhancer.commands.StructureCommand;
 import eu.loumadev.enhancer.events.SelectionEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
-
 /**
  * Hello world!
  *

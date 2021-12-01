@@ -1,6 +1,5 @@
 package eu.loumadev.enhancer.commands;
 
-import com.google.gson.internal.$Gson$Types;
 import eu.loumadev.enhancer.structures.Structure;
 import eu.loumadev.enhancer.structures.WorldMismatchException;
 import org.bukkit.ChatColor;
@@ -9,13 +8,10 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
-import org.json.simple.parser.ParseException;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -40,14 +36,14 @@ public class StructureCommand implements CommandExecutor {
                         if(player.hasMetadata("pos1") && player.hasMetadata("pos2")){
                             Block pos1 = (Block) player.getMetadata("pos1").get(0).value();
                             Block pos2 = (Block) player.getMetadata("pos2").get(0).value();
-                            Structure.save(pos1, pos2, new File(strings[1] + ".json"));
+                            Structure.save(pos1, pos2, new File(this.plugin.getDataFolder(), "structures/" + strings[1] + ".json"));
                             player.sendMessage("Saved successfully!");
                         }
                         else player.sendMessage(ChatColor.RED + "Positions not set");
                     }
 
                     else if(strings[0].equalsIgnoreCase("build")){
-                        Structure.build(player.getLocation(), new File(strings[1] + ".json"));
+                        Structure.build(player.getLocation(), new File(this.plugin.getDataFolder(), "structures/" + strings[1] + ".json"));
                         player.sendMessage("Built!");
                     }
                 } catch (IndexOutOfBoundsException e) {
