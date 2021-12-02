@@ -1,6 +1,7 @@
 package eu.loumadev.enhancer;
 
 import eu.loumadev.enhancer.enchantments.EnchantmentRegistrar;
+import eu.loumadev.enhancer.events.StructureGenerator;
 import eu.loumadev.enhancer.structures.Structure;
 import org.bukkit.event.world.ChunkPopulateEvent;
 import eu.loumadev.enhancer.commands.StructureCommand;
@@ -21,6 +22,7 @@ public class Main extends JavaPlugin {
 
 		this.getServer().getPluginCommand("struct").setExecutor(new StructureCommand(this));
 		this.getServer().getPluginManager().registerEvents(new SelectionEvent(this), this);
+		this.getServer().getPluginManager().registerEvents(new StructureGenerator(this), this);
 	}
 
 	@Override

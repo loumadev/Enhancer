@@ -38,6 +38,7 @@ public class Verbosity extends CustomEnchantment implements Listener {
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent event) {
 		ItemStack item = event.getPlayer().getInventory().getItemInMainHand();
+		if(!item.hasItemMeta()) return;
 		ItemMeta meta = item.getItemMeta();
 
 		meta.getEnchants().forEach((enchantment, level) -> {
