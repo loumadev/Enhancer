@@ -29,24 +29,24 @@ public class StructureGenerator implements Listener {
 				if(e.isNewChunk()) {
 
 					Chunk chunk = e.getChunk();
-					Biome biome = chunk.getBlock(0,0, 0).getBiome();
+					Biome biome = chunk.getBlock(0, 0, 0).getBiome();
 
-					if (biome == Biome.FOREST || biome == Biome.FLOWER_FOREST) {
+					if(biome == Biome.FOREST || biome == Biome.FLOWER_FOREST) {
 						Random rand = new Random();
-						if (rand.nextDouble(100) < 25.00) {
+						if(rand.nextDouble() < 0.25) {
 							int x = rand.nextInt(16);
 							int z = rand.nextInt(16);
 
-							for (int y = 255; y >= 0; y--){
-								if(chunk.getBlock(x, y, z).getType() == Material.GRASS_BLOCK){
+							for(int y = 255; y >= 0; y--) {
+								if(chunk.getBlock(x, y, z).getType() == Material.GRASS_BLOCK) {
 									try {
 										Structure.build(
-												chunk.getBlock(x, y + 1, z).getLocation(),
-												new File(plugin.getDataFolder(), "/structures/fallen_log.json")
+											chunk.getBlock(x, y + 1, z).getLocation(),
+											new File(plugin.getDataFolder(), "/structures/fallen_log.json")
 										);
 										//plugin.getLogger().log(Level.INFO, "Generated a fallen log on " + chunk.getBlock(x,y+1,z));
 									}
-									catch (Exception e) {
+									catch(Exception e) {
 										e.printStackTrace();
 									}
 									break;
